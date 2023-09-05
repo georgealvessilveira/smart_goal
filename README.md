@@ -1,16 +1,16 @@
 # smart_goals
 
-A new Flutter project.
+Um aplicativo para criação de metas.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+Configurações:
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Crie um projeto no [Firebase](https://firebase.google.com) <br>
+![img.png](img.png)<br>
+- Adicione um app na versão Flutter e siga as instruções <br>
+![img_1.png](img_1.png) <br>
+![img_2.png](img_2.png) <br>
+- Após isso a classe DefaultFirebaseOptions no arquivo firebase_options.dart criada <br>
+![img_3.png](img_3.png) <br>
+![img_4.png](img_4.png)
