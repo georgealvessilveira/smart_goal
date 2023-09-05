@@ -1,14 +1,13 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:smart_goals/core/const/app_const.dart';
-import 'package:smart_goals/modules/auth/presenter/auth_module.dart';
-import 'package:smart_goals/modules/goal/presenter/goal_module.dart';
-import 'package:smart_goals/modules/profile/presenter/profile_module.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:smart_goals/core/module/core_module.dart';
+import 'package:smart_goals/firebase_options.dart';
+import 'package:smart_goals/module/auth/presenter/auth_module.dart';
+import 'package:smart_goals/module/goal/presenter/goal_module.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,11 +15,6 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-
-  if (kDebugMode) {
-    await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
-    FirebaseFirestore.instance.useFirestoreEmulator('localhost', 9098);
-  }
 
   runApp(
     ModularApp(
@@ -35,8 +29,12 @@ class AppModule extends Module {
   void routes(RouteManager r) {
     r.module('/', module: GoalModule());
     r.module('/auth', module: AuthModule());
-    r.module('/profile', module: ProfileModule());
   }
+
+  @override
+  List<Module> get imports => [
+        CoreModule(),
+      ];
 }
 
 class AppWidget extends StatelessWidget {
@@ -60,9 +58,9 @@ class AppWidget extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.deepPurple,
-          primary: Colors.deepPurple,
-          secondary: Colors.deepPurpleAccent,
+          seedColor: Colors.teal,
+          primary: Colors.teal,
+          secondary: Colors.blueGrey,
         ),
         textTheme: const TextTheme(
           displayLarge: TextStyle(

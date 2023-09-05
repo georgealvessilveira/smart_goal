@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:logger/logger.dart';
 import 'package:smart_goals/core/user/user_model.dart';
+import 'package:logger/logger.dart';
 
 abstract class IUserRepository {
   signIn(UserModel userModel);
@@ -33,6 +33,7 @@ class UserRepositoryFirebase implements IUserRepository {
       );
     } catch (error) {
       _logger.e(error.toString(), error: error);
+      rethrow;
     }
   }
 
@@ -53,6 +54,7 @@ class UserRepositoryFirebase implements IUserRepository {
       _auth.currentUser?.updateDisplayName(userModel.nickname);
     } catch (error) {
       _logger.e(error.toString(), error: error);
+      rethrow;
     }
   }
 
